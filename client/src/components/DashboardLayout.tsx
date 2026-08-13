@@ -21,15 +21,24 @@ import {
 } from "@/components/ui/sidebar";
 import { startLogin } from "@/const";
 import { useIsMobile } from "@/hooks/useMobile";
-import { LayoutDashboard, LogOut, PanelLeft, Users } from "lucide-react";
+import { BookOpen, CalendarDays, ClipboardCheck, Clock3, FileText, GraduationCap, LayoutDashboard, LogOut, PanelLeft, Phone, Settings2, ShieldAlert, StickyNote, Users, UsersRound } from "lucide-react";
 import { CSSProperties, useEffect, useRef, useState } from "react";
 import { useLocation } from "wouter";
 import { DashboardLayoutSkeleton } from './DashboardLayoutSkeleton';
 import { Button } from "./ui/button";
 
 const menuItems = [
-  { icon: LayoutDashboard, label: "Page 1", path: "/" },
-  { icon: Users, label: "Page 2", path: "/some-path" },
+  { icon: LayoutDashboard, label: "Today", section: "overview" },
+  { icon: Settings2, label: "Identity setup", section: "setup" },
+  { icon: Clock3, label: "Bell schedule", section: "bell" },
+  { icon: CalendarDays, label: "Monthly spread", section: "month" },
+  { icon: BookOpen, label: "Weekly command", section: "week" },
+  { icon: FileText, label: "Daily page", section: "daily" },
+  { icon: ClipboardCheck, label: "Grading tracker", section: "grading" },
+  { icon: Users, label: "Student notes", section: "students" },
+  { icon: Phone, label: "Parent contacts", section: "parents" },
+  { icon: ShieldAlert, label: "Procedures", section: "procedures" },
+  { icon: StickyNote, label: "Supplementary", section: "supplementary" },
 ];
 
 const SIDEBAR_WIDTH_KEY = "sidebar-width";
@@ -110,7 +119,8 @@ function DashboardLayoutContent({
   const isCollapsed = state === "collapsed";
   const [isResizing, setIsResizing] = useState(false);
   const sidebarRef = useRef<HTMLDivElement>(null);
-  const activeMenuItem = menuItems.find(item => item.path === location);
+  const activeSection = new URLSearchParams(location.split("?")[1] ?? "").get("section") ?? "overview";
+  const activeMenuItem = menuItems.find(item => item.section === activeSection);
   const isMobile = useIsMobile();
 
   useEffect(() => {
@@ -169,7 +179,7 @@ function DashboardLayoutContent({
               {!isCollapsed ? (
                 <div className="flex items-center gap-2 min-w-0">
                   <span className="font-semibold tracking-tight truncate">
-                    Navigation
+                    My journal
                   </span>
                 </div>
               ) : null}
@@ -179,12 +189,12 @@ function DashboardLayoutContent({
           <SidebarContent className="gap-0">
             <SidebarMenu className="px-2 py-1">
               {menuItems.map(item => {
-                const isActive = location === item.path;
+                const isActive = activeSection === item.section;
                 return (
-                  <SidebarMenuItem key={item.path}>
+                  <SidebarMenuItem key={item.section}>
                     <SidebarMenuButton
                       isActive={isActive}
-                      onClick={() => setLocation(item.path)}
+                      onClick={() => setLocation(`/?section=${item.section}`)}
                       tooltip={item.label}
                       className={`h-10 transition-all font-normal`}
                     >
