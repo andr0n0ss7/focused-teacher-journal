@@ -85,6 +85,7 @@ export type ParentContact = {
   id: string;
   student: string;
   classId: string;
+  rosterMemberId?: string;
   date: string;
   contact: string;
   reason: string;
@@ -137,6 +138,9 @@ export type PlannerState = {
 };
 
 export const getLinkedStudentName = (state: PlannerState, note: StudentNote) => state.identity.classes.find(classItem => classItem.id === note.classId)?.members.find(member => member.id === note.rosterMemberId)?.name || note.name;
+export const learnerRoute = (classId: string, memberId: string) => `/?section=students&classId=${encodeURIComponent(classId)}&memberId=${encodeURIComponent(memberId)}`;
+export const getLearnerNotes = (state: PlannerState, classId: string, memberId: string) => state.studentNotes.filter(note => note.classId === classId && note.rosterMemberId === memberId);
+export const getLearnerParentContacts = (state: PlannerState, classId: string, memberId: string, memberName?: string) => state.parentContacts.filter(contact => contact.classId === classId && (contact.rosterMemberId === memberId || (!contact.rosterMemberId && contact.student === memberName)));
 
 export const EMPTY_PLANNER_STATE: PlannerState = {
   identity: { teacherName: "", subjects: "", year: "", term: "", classes: [] },

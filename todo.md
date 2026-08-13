@@ -47,3 +47,25 @@
 - [x] Display the linked roster member and class consistently on saved notes
 - [x] Preserve compatibility for older notes that only contain a typed student name
 - [x] Test linked note creation, roster rename behavior, and persistence
+
+# Individual learner workspace
+
+- [x] Make each roster member on Identity setup clickable and route to that learner’s Student Notes view
+- [x] Add an individual learner context to the Student Notes page with class and member identity
+- [x] Show the learner’s notes in the individual view and keep them editable/persistent
+- [x] Move parent/carer contact details into the individual learner view
+- [x] Hide parent/carer contacts behind an intentionally expandable details panel
+- [x] Preserve existing linked roster-member IDs and older student-note compatibility
+- [x] Test member-click navigation, individual note filtering, expandable contacts, and persistence
+
+# Individual learner integration follow-ups
+
+- [x] Add edit controls for existing student notes in the individual learner view and verify changes persist
+- [x] Link parent/carer contact creation to rosterMemberId from the learner context and preserve it through renames
+- [x] Add verifiable coverage for member-click navigation, learner filtering, expandable contacts, and linked-contact persistence
+
+# Final learner-flow verification
+
+- [x] Add an existing-note edit round-trip test
+- [x] Pass a stable memberId into the parent-contact route and use it directly
+- [x] Add pure coverage for learner navigation URL and individual note/contact filtering
