@@ -6,12 +6,17 @@
 export type * from "../drizzle/schema";
 export * from "./_core/errors";
 
+export type PlannerMember = {
+  id: string;
+  name: string;
+};
+
 export type PlannerClass = {
   id: string;
   name: string;
   room: string;
   color: string;
-  members: string[];
+  members: PlannerMember[];
 };
 
 export type BellPeriod = {
@@ -67,6 +72,7 @@ export type StudentNote = {
   id: string;
   name: string;
   classId: string;
+  rosterMemberId?: string;
   strengths: string;
   evidence: string;
   supportNeeds: string;
@@ -129,6 +135,8 @@ export type PlannerState = {
   procedures: Procedure[];
   supplementary: SupplementaryState;
 };
+
+export const getLinkedStudentName = (state: PlannerState, note: StudentNote) => state.identity.classes.find(classItem => classItem.id === note.classId)?.members.find(member => member.id === note.rosterMemberId)?.name || note.name;
 
 export const EMPTY_PLANNER_STATE: PlannerState = {
   identity: { teacherName: "", subjects: "", year: "", term: "", classes: [] },

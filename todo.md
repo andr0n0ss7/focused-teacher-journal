@@ -38,3 +38,12 @@
 - [x] Support adding, renaming, and removing class members within the eight-class limit
 - [x] Connect roster members to student notes and keep the workflow editable
 - [x] Test roster persistence, class selection, validation, and responsive presentation
+
+# Roster-to-student-notes linkage
+
+- [x] Add stable member identifiers to roster entries while preserving existing names
+- [x] Store a linked roster member ID on each student note
+- [x] Make student-note selection class-filtered and roster-driven
+- [x] Display the linked roster member and class consistently on saved notes
+- [x] Preserve compatibility for older notes that only contain a typed student name
+- [x] Test linked note creation, roster rename behavior, and persistence
