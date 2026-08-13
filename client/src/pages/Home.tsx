@@ -31,7 +31,7 @@ function EmptyState({ title, detail }: { title: string; detail: string }) {
 
 export default function Home() {
   const [location, setLocation] = useLocation();
-  const section = new URLSearchParams(location.split("?")[1] ?? "").get("section") ?? "overview";
+  const section = new URLSearchParams(window.location.search).get("section") ?? "overview";
   const plannerQuery = trpc.planner.get.useQuery();
   const saveMutation = trpc.planner.save.useMutation();
   const resetMutation = trpc.planner.reset.useMutation();

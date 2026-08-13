@@ -24,3 +24,9 @@
 - [x] Add Vitest coverage for planner get/save/reset persistence round trips
 - [ ] Manually verify authenticated planner workflows end-to-end where browser access permits
 - [x] Refine section differentiation so the product reads clearly as a teacher journal rather than a generic dashboard
+
+# Reported deployment bugs
+
+- [x] Fix sidebar navigation so each planner section changes the visible workspace in the deployed app
+- [x] Diagnose published-site authentication/login failure: live logs show missing session cookies but no OAuth callback failure; the published domain is currently routing through the Manus access gate
+- [ ] Verify navigation and authentication on the published domain

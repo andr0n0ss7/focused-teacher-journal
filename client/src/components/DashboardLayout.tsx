@@ -119,7 +119,7 @@ function DashboardLayoutContent({
   const isCollapsed = state === "collapsed";
   const [isResizing, setIsResizing] = useState(false);
   const sidebarRef = useRef<HTMLDivElement>(null);
-  const activeSection = new URLSearchParams(location.split("?")[1] ?? "").get("section") ?? "overview";
+  const activeSection = new URLSearchParams(window.location.search).get("section") ?? "overview";
   const activeMenuItem = menuItems.find(item => item.section === activeSection);
   const isMobile = useIsMobile();
 
@@ -194,7 +194,7 @@ function DashboardLayoutContent({
                   <SidebarMenuItem key={item.section}>
                     <SidebarMenuButton
                       isActive={isActive}
-                      onClick={() => setLocation(`/?section=${item.section}`)}
+                      onClick={() => { window.location.href = `/?section=${item.section}`; }}
                       tooltip={item.label}
                       className={`h-10 transition-all font-normal`}
                     >
