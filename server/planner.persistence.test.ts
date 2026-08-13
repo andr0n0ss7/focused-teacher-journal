@@ -29,8 +29,10 @@ describe("planner persistence procedures", () => {
     savePlannerState.mockImplementation(async (_userId: number, state: unknown) => state);
     const state = structuredClone(EMPTY_PLANNER_STATE);
     state.identity.teacherName = "A. Teacher";
+    state.identity.classes = [{ id: "class-1", name: "9A", room: "101", color: "#2F6F68", members: ["Alex Rivera"] }];
     const result = await appRouter.createCaller(context()).planner.save({ state });
     expect(result.identity.teacherName).toBe("A. Teacher");
+    expect(result.identity.classes[0].members).toEqual(["Alex Rivera"]);
     expect(savePlannerState).toHaveBeenCalledWith(42, state);
   });
 

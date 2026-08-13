@@ -14,7 +14,7 @@ const plannerStateSchema = z.object({
     subjects: z.string(),
     year: z.string(),
     term: z.string(),
-    classes: z.array(z.object({ id: z.string(), name: z.string(), room: z.string(), color: z.string() })).max(8),
+    classes: z.array(z.object({ id: z.string(), name: z.string(), room: z.string(), color: z.string(), members: z.array(z.string()).default([]) })).max(8),
   }),
   bellSchedule: z.array(z.object({ id: z.string(), label: z.string(), start: z.string(), end: z.string(), classId: z.string(), room: z.string(), transitionNote: z.string() })),
   monthlyEntries: z.array(z.object({ id: z.string(), date: z.string(), classId: z.string(), kind: z.enum(["deadline", "holiday", "task"]), title: z.string(), details: z.string() })),

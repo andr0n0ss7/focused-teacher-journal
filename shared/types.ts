@@ -11,6 +11,7 @@ export type PlannerClass = {
   name: string;
   room: string;
   color: string;
+  members: string[];
 };
 
 export type BellPeriod = {

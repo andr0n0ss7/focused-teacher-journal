@@ -30,3 +30,11 @@
 - [x] Fix sidebar navigation so each planner section changes the visible workspace in the deployed app
 - [x] Diagnose published-site authentication/login failure: live logs show missing session cookies but no OAuth callback failure; the published domain is currently routing through the Manus access gate
 - [ ] Verify navigation and authentication on the published domain
+
+# Class roster enhancement
+
+- [x] Add persistent class member lists for each configured class
+- [x] Make class cards clickable and open the selected class roster
+- [x] Support adding, renaming, and removing class members within the eight-class limit
+- [x] Connect roster members to student notes and keep the workflow editable
+- [x] Test roster persistence, class selection, validation, and responsive presentation
